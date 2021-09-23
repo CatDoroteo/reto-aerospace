@@ -73,13 +73,12 @@ export default {
       this.markers.push(Object.values(e.latlng));
     },
     setMarker(e) {
-      let point = [e.position.latitude, e.position.longitude];
-      console.log(this.geojson.contains(e));
+      // let point = [e.position.latitude, e.position.longitude];
       // let ponts = turf.point(point);
       // let algo = turf.lineString(this.dato.features[0].geometry.coordinates[0]);
       // let porfavor = turf.booleanContains(algo, ponts);
       // console.log(porfavor);
-      // this.result.markers.push(e);
+      this.result.markers.push(e);
     },
     deleteMarker(e) {
       let arrFilter = [];
@@ -102,27 +101,6 @@ export default {
     },
     sendInfo() {
       console.log(this.result);
-    },
-    inside(point, vs) {
-      // ray-casting algorithm based on
-      // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-
-      var x = point[0],
-        y = point[1];
-
-      var inside = false;
-      for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
-        var xi = vs[i][0],
-          yi = vs[i][1];
-        var xj = vs[j][0],
-          yj = vs[j][1];
-
-        var intersect =
-          yi > y != yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
-        if (intersect) inside = !inside;
-      }
-
-      return inside;
     },
   },
   computed: {},
